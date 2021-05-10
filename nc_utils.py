@@ -6,7 +6,7 @@ from scipy.special import binom
 
 # finite differentiation
 def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
-    """Return n-th order central numerical difference of a given
+    r"""Return n-th order central numerical difference of a given
     time-independent function.
     
     If order is not given, it is assumed to be 1.
@@ -41,8 +41,8 @@ def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
         raise ValueError('`x`, `y` and `z` axis are supported.')
     if order not in [1, 2]:
         raise ValueError(f'Differentiation order {order} is not supported.')
-    precision_low = 1.e-2
-    precision_high = 1.e-9
+    precision_low = 1.0e-2
+    precision_high = 1.0e-9
     if eps > precision_low:
         raise ValueError(f'`eps` has to be larger than {precision_low}.')
     elif eps < precision_high:
@@ -50,35 +50,35 @@ def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
     if axis == 'x':
         def f(x):
             if order == 1:
-                return (func(x+eps, *args) 
-                        - func(x-eps, *args))/(2*eps)
+                return (func(x + eps, *args) 
+                        - func(x - eps, *args)) / (2 * eps)
             if order == 2:
-                return (func(x+eps, *args) 
-                        - 2*func(x, *args) 
-                        + func(x-eps, *args))/eps**2
+                return (func(x + eps, *args)
+                        - 2 * func(x, *args)
+                        + func(x - eps, *args)) / eps ** 2
     elif axis == 'y':
         def f(y):
             if order == 1:
-                return (func(args[0], y+eps, *args[1:]) 
-                        - func(args[0], y-eps, *args[1:]))/(2*eps)
+                return (func(args[0], y + eps, *args[1:])
+                        - func(args[0], y - eps, *args[1:])) / (2 * eps)
             if order == 2:
-                return (func(args[0], y+eps, *args[1:]) 
-                        - 2*func(args[0], y, *args[1:]) 
-                        + func(args[0], y-eps, *args[1:]))/eps**2
+                return (func(args[0], y + eps, *args[1:])
+                        - 2 * func(args[0], y, *args[1:])
+                        + func(args[0], y - eps, *args[1:])) / eps ** 2
     else:
         def f(z):
             if order == 1:
-                return (func(*args[:2], z+eps, *args[2:]) 
-                        - func(*args[:2], z-eps, *args[2:]))/(2*eps)
+                return (func(*args[:2], z + eps, *args[2:])
+                        - func(*args[:2], z - eps, *args[2:])) / (2 * eps)
             if order == 2:
-                return (func(*args[:2], z+eps, *args[2:]) 
-                        - 2*func(*args[:2], z, *args[2:]) 
-                        + func(*args[:2], z-eps, *args[2:]))/eps**2
+                return (func(*args[:2], z + eps, *args[2:])
+                        - 2 * func(*args[:2], z, *args[2:]) 
+                        + func(*args[:2], z - eps, *args[2:]))/ eps ** 2
     return f
 
 
 def holoborodko(y, dx=1):
-    """Return the 1st order numerical difference on a sampled data. If
+    r"""Return the 1st order numerical difference on a sampled data. If
     `dx` is not given, it is assumed to be 1. This function is to be
     used when noise is present in the data. Filter length of size 5 is
     used in this implementation. For more details check:
@@ -118,7 +118,7 @@ def holoborodko(y, dx=1):
 
 # numerical integration
 def quad(func, a, b, args=(), n_points=3):
-    """Return the the integral of a given function using the
+    r"""Return the the integral of a given function using the
     Gauss-Legendre quadrature scheme.
     
     Parameters
@@ -147,7 +147,7 @@ def quad(func, a, b, args=(), n_points=3):
 
 
 def dblquad(func, bbox, args=(), n_points=9):
-    """Return the the integral of a given 2-D function, `f(y, x)`,
+    r"""Return the the integral of a given 2-D function, `f(y, x)`,
     using the Gauss-Legendre quadrature scheme.
     
     Parameters
@@ -176,7 +176,7 @@ def dblquad(func, bbox, args=(), n_points=9):
 
 
 def elementwise_quad(y, x, n_points=3):
-    """Return the approximate value of the integral of a given sampled
+    r"""Return the approximate value of the integral of a given sampled
     data using the Gauss-Legendre quadrature.
     
     Parameters
@@ -205,7 +205,7 @@ def elementwise_quad(y, x, n_points=3):
 
 
 def elementwise_dblquad(z, x, y, n_points=9):
-    """Return the approximate value of the integral of a given sampled
+    r"""Return the approximate value of the integral of a given sampled
     2-D data using the Gauss-Legendre quadrature.
     
     Parameters
