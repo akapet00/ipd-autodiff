@@ -21,8 +21,8 @@ def load_antenna_el_properties(frequency):
 
     Returns
     -------
-    numpy.ndarray
-        current distribution over the wire
+    pandas.DataFrame
+        current distribution over the wire alongside additional data
     """
     assert frequency / 1e9 in SUPPORTED_FREQS, \
         (f'{frequency / 1e9} is not in supported. '
