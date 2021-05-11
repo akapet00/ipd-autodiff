@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from scipy.io import loadmat
 
@@ -27,7 +29,7 @@ def load_antenna_el_properties(frequency):
     assert frequency / 1e9 in SUPPORTED_FREQS, \
         (f'{frequency / 1e9} is not in supported. '
          f'Supported frequency values: {SUPPORTED_FREQS}.')
-    data = loadmat('current.mat')['output']
+    data = loadmat(os.path.join('data', 'current.mat'))['output']
     df = pd.DataFrame(data,
                       columns=['L', 'N', 'r', 'f', 'x', 'ireal', 'iimag'])
     df_f = df[df.f == frequency]
