@@ -5,19 +5,11 @@ from scipy.special import binom
  
 
 # finite differentiation
-def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
+def central_difference(func, axis='x', args=(), order=1, delta=1.e-4):
     r"""Return n-th order central numerical difference of a given
     time-independent function.
     
     If order is not given, it is assumed to be 1.
-    
-    Args
-    ----
-    func (callable) - function to derive w.r.t. a single variable
-    axis (string, optional) - differentiation domain 
-    args (tuple, optional) - additional arguments of a function
-    order (int, optional) - numerical derivation order
-    eps (float, optional) - numerical derivation precision
     
     Parameters
     ----------
@@ -29,7 +21,7 @@ def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
         additional arguments of a function
     order : int, optional
         numerical derivation order
-    eps : float, optional
+    delta : float, optional
         numerical derivation precision
     
     Returns
@@ -41,39 +33,39 @@ def central_difference(func, axis='x', args=(), order=1, eps=1.e-4):
         raise ValueError('`x`, `y` and `z` axis are supported.')
     if order not in [1, 2]:
         raise ValueError(f'Differentiation order {order} is not supported.')
-    precision_low = 1.0e-2
-    precision_high = 1.0e-9
-    if eps > precision_low:
-        raise ValueError(f'`eps` has to be larger than {precision_low}.')
-    elif eps < precision_high:
-        raise ValueError(f'`eps` has to be less than {precision_high}.')
+    precision_low = 1.0e-1
+    precision_high = 1.0e-16
+    if delta > precision_low:
+        raise ValueError(f'`delta` has to be smaller than {precision_low}.')
+    elif delta < precision_high:
+        raise ValueError(f'`delta` has to be larger than {precision_high}.')
     if axis == 'x':
         def f(x):
             if order == 1:
-                return (func(x + eps, *args) 
-                        - func(x - eps, *args)) / (2 * eps)
+                return (func(x + delta, *args) 
+                        - func(x - delta, *args)) / (2 * delta)
             if order == 2:
-                return (func(x + eps, *args)
+                return (func(x + delta, *args)
                         - 2 * func(x, *args)
-                        + func(x - eps, *args)) / eps ** 2
+                        + func(x - delta, *args)) / delta ** 2
     elif axis == 'y':
         def f(y):
             if order == 1:
-                return (func(args[0], y + eps, *args[1:])
-                        - func(args[0], y - eps, *args[1:])) / (2 * eps)
+                return (func(args[0], y + delta, *args[1:])
+                        - func(args[0], y - delta, *args[1:])) / (2 * delta)
             if order == 2:
-                return (func(args[0], y + eps, *args[1:])
+                return (func(args[0], y + delta, *args[1:])
                         - 2 * func(args[0], y, *args[1:])
-                        + func(args[0], y - eps, *args[1:])) / eps ** 2
+                        + func(args[0], y - delta, *args[1:])) / delta ** 2
     else:
         def f(z):
             if order == 1:
-                return (func(*args[:2], z + eps, *args[2:])
-                        - func(*args[:2], z - eps, *args[2:])) / (2 * eps)
+                return (func(*args[:2], z + delta, *args[2:])
+                        - func(*args[:2], z - delta, *args[2:])) / (2 * delta)
             if order == 2:
-                return (func(*args[:2], z + eps, *args[2:])
+                return (func(*args[:2], z + delta, *args[2:])
                         - 2 * func(*args[:2], z, *args[2:]) 
-                        + func(*args[:2], z - eps, *args[2:]))/ eps ** 2
+                        + func(*args[:2], z - delta, *args[2:]))/ delta ** 2
     return f
 
 
