@@ -11,7 +11,7 @@ Authors : [Ante Lojic Kapetanovic](http://adria.fesb.hr/~alojic00/), Dragan Polj
 ### Abstract
 
 This paper introduces the concept of automatic differentiation in the evaluation of the absorbed power density in the mmWave frequency spectrum for the new generation of mobile telecommunication technology.
-Automatic differentiation is proved to be far superior over numerical differentiation by means of speed and accuracy.
+Automatic differentiation has been shown to be far superior over numerical differentiation by means of speed and accuracy.
 To demonstrate the full capacity of the proposed method, a comprehensive analysis of computing the absorbed power density on the surface of irradiated human skin in various configurations is presented.
 
 ### Reproduce the results
