@@ -1,49 +1,42 @@
 # ipd-autodiff
 
-Code for the paper "Application of Automatic Differentiation in Electromagnetic Dosimetry - Assessment of the Absorbed Power Density in the mmWave Frequency Spectrum"
+Code for the paper:
 
 ## Application of Automatic Differentiation in Electromagnetic Dosimetry - Assessment of the Absorbed Power Density in the mmWave Frequency Spectrum
-
-This repository contains all code necessary for reproducing the results presented in the paper.
-
-Authors : [Ante Lojic Kapetanovic](http://adria.fesb.hr/~alojic00/), Dragan Poljak
+Authors: [Ante Lojic Kapetanovic](http://adria.fesb.hr/~alojic00/), Dragan Poljak
 
 ### Abstract
-
-This paper introduces the concept of automatic differentiation in the evaluation of the absorbed power density in the mmWave frequency spectrum for the new generation of mobile telecommunication technology.
-Automatic differentiation has been shown to be far superior over numerical differentiation by means of speed and accuracy.
-To demonstrate the full capacity of the proposed method, a comprehensive analysis of computing the absorbed power density on the surface of irradiated human skin in various configurations is presented.
+This paper introduces the concept of automatic differentiation in the evaluation of the absorbed power density in the mmWave frequency spectrum for the new generation of mobile telecommunication technology. Automatic differentiation has been shown to be far superior over numerical differentiation by means of speed and accuracy. To demonstrate the full capacity of the proposed method, a comprehensive analysis of computing the absorbed power density on the surface of irradiated human skin in various configurations is presented.
 
 ### Reproduce the results
-
 Install prerequisities from `requirements.txt`.
 
 To enable GPU support install `jax` with CUDA support by first installing CUDA and CUDNN and run:
 ```shel
 pip install --upgrade pip
 pip install --upgrade "jax[cuda111]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
-
 ```
+
 Details available in the official `jax` documentation.
 
-All figures are available by running `main.ipynb` in Jupyter Notebook.
+All figures and results in the paper can be reproduced by running `main.ipynb` in Jupyter Notebook.
 
-### Citatio
+### Citation
+To cite this work, please use the following:
+  
+  A. L. Kapetanović and D. Poljak, "Application of Automatic Differentiation in Electromagnetic Dosimetry - Assessment of the Absorbed Power Density in the mmWave Frequency Spectrum," 2021 6th International Conference on Smart and Sustainable Technologies (SpliTech), 2021, pp. 1-6, doi: 10.23919/SpliTech52315.2021.9566429.
 
-The paper has not yet been published online.
-
-A. L. Kapetanovic and D. Poljak, "Application of Automatic Differentiation in Electromagnetic Dosimetry - Assessment of the Absorbed Power Density in the mmWave Frequency Spectrum," 2021 6th International Conference on Smart and Sustainable Technologies (SpliTech), 2021, pp. 1-6, doi: tba.
+or bibtex entry:
 
 ```bibtex
-@inproceedings{kapetanovic2021application,
-  title={Application of Automatic Differentiation in Electromagnetic Dosimetry - {Assessment} of the Absorbed Power Density in the {mmWave} Frequency Spectrum},
-  author={Lojic Kapetanovic, Ante and Poljak, Dragan},
+@INPROCEEDINGS{Kapetanovic2021Application,
+  author={Lojić Kapetanović, Ante and Poljak, Dragan},
+  booktitle={2021 6th International Conference on Smart and Sustainable Technologies (SpliTech)},
+  title={Application of Automatic Differentiation in Electromagnetic Dosimetry - {Assessment} of the Absorbed Power Density in the mmWave Frequency Spectrum},
   year={2021},
-  booktitle={2020 5th International Conference on Smart and Sustainable Technologies (SpliTech)},
-  pages={1--6},
-  doi={},
-  url={}
-}
+  pages={1-6},
+  doi={10.23919/SpliTech52315.2021.9566429},
+  url={https://doi.org/10.23919/SpliTech52315.2021.9566429}}
 ```
 
 ### License
