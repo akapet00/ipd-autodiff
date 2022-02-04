@@ -6,7 +6,7 @@ import numpy as np
 # visualization
 def fig_config(latex=False, nrows=1, ncols=1, scaler=1.0):
     r"""Configure matplotlib parameters for better visualization style.
-    
+
     Parameters
     ----------
     latex : bool, optional
@@ -17,7 +17,7 @@ def fig_config(latex=False, nrows=1, ncols=1, scaler=1.0):
         number of figures column-wise
     scaler : float, optional
         scaler for each figure
-        
+
     Returns
     -------
     None
@@ -44,29 +44,29 @@ def fig_config(latex=False, nrows=1, ncols=1, scaler=1.0):
 
 def fig_config_reset():
     r"""Recover matplotlib default parameters.
-    
+
     Parameters
     ----------
     None
-    
+
     Returns
     -------
     None
     """
     plt.rcParams.update(plt.rcParamsDefault)
-    
-    
+
+
 # error evaulation
 def mse(true, pred):
     r"""Return mean square difference between two values.
-    
+
     Parameters
     ----------
     true : float or numpy.ndarray
         True value(s)
     pred : float or numpy.ndarray
         Predicted or simulated value(s)
-    
+
     Returns
     -------
     float
@@ -80,14 +80,14 @@ def mse(true, pred):
 
 def rmse(true, pred):
     r"""Return root mean square difference between two values.
-    
+
     Parameters
     ----------
     true : float or numpy.ndarray
         True value(s)
     pred : float or numpy.ndarray
         Predicted or simulated value(s)
-    
+
     Returns
     -------
     float
@@ -101,14 +101,14 @@ def rmse(true, pred):
 
 def msle(true, pred):
     r"""Return mean square log difference between two values.
-    
+
     Parameters
     ----------
     true : float or numpy.ndarray
         True value(s)
     pred : float or numpy.ndarray
         Predicted or simulated value(s)
-    
+
     Returns
     -------
     float
@@ -122,14 +122,14 @@ def msle(true, pred):
 
 def mae(true, pred):
     r"""Return mean absolute difference between two values.
-    
+
     Parameters
     ----------
     true : float or numpy.ndarray
         True value(s)
     pred : float or numpy.ndarray
         Predicted or simulated value(s)
-    
+
     Returns
     -------
     float

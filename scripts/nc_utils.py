@@ -2,28 +2,28 @@ import jax.numpy as jnp
 import numpy as np
 from scipy.interpolate import interp1d, RectBivariateSpline
 from scipy.special import binom
- 
+
 
 # finite differentiation
 def central_difference(func, axis='x', args=(), order=1, delta=1.e-4):
     r"""Return n-th order central numerical difference of a given
     time-independent function.
-    
+
     If order is not given, it is assumed to be 1.
-    
+
     Parameters
     ----------
     func : callable
         function to derive w.r.t. a single variable
     axis : string, optional
-        differentiation domain 
+        differentiation domain
     args : tuple, optional)
         additional arguments of a function
     order : int, optional
         numerical derivation order
     delta : float, optional
         numerical derivation precision
-    
+
     Returns
     -------
     numpy.ndarray
@@ -42,7 +42,7 @@ def central_difference(func, axis='x', args=(), order=1, delta=1.e-4):
     if axis == 'x':
         def f(x):
             if order == 1:
-                return (func(x + delta, *args) 
+                return (func(x + delta, *args)
                         - func(x - delta, *args)) / (2 * delta)
             if order == 2:
                 return (func(x + delta, *args)
@@ -64,8 +64,8 @@ def central_difference(func, axis='x', args=(), order=1, delta=1.e-4):
                         - func(*args[:2], z - delta, *args[2:])) / (2 * delta)
             if order == 2:
                 return (func(*args[:2], z + delta, *args[2:])
-                        - 2 * func(*args[:2], z, *args[2:]) 
-                        + func(*args[:2], z - delta, *args[2:]))/ delta ** 2
+                        - 2 * func(*args[:2], z, *args[2:])
+                        + func(*args[:2], z - delta, *args[2:])) / delta ** 2
     return f
 
 
@@ -75,14 +75,14 @@ def holoborodko(y, dx=1):
     used when noise is present in the data. Filter length of size 5 is
     used in this implementation. For more details check:
     http://www.holoborodko.com/pavel/numerical-methods/numerical-derivative/smooth-low-noise-differentiators/
-    
+
     Parameters
     ----------
     y : numpy.ndarray
         data to derive w.r.t. a single variable
     dx : float, optional
         elementwise distance
-    
+
     Returns
     -------
     numpy.ndarray
@@ -112,7 +112,7 @@ def holoborodko(y, dx=1):
 def quad(func, a, b, args=(), n_points=3):
     r"""Return the the integral of a given function using the
     Gauss-Legendre quadrature scheme.
-    
+
     Parameters
     ----------
     func : callable
@@ -125,7 +125,7 @@ def quad(func, a, b, args=(), n_points=3):
         additional arguments for `func`
     n_points : int, optional
         degree of the Gauss-Legendre quadrature
-        
+
     Returns
     -------
     float
@@ -141,7 +141,7 @@ def quad(func, a, b, args=(), n_points=3):
 def dblquad(func, bbox, args=(), n_points=9):
     r"""Return the the integral of a given 2-D function, `f(y, x)`,
     using the Gauss-Legendre quadrature scheme.
-    
+
     Parameters
     ----------
     func : callable
@@ -152,7 +152,7 @@ def dblquad(func, bbox, args=(), n_points=9):
         additional arguments for `func`
     n_points : int, optional
         degree of the Gauss-Legendre quadrature
-        
+
     Returns
     -------
     float
@@ -170,7 +170,7 @@ def dblquad(func, bbox, args=(), n_points=9):
 def elementwise_quad(y, x, n_points=3):
     r"""Return the approximate value of the integral of a given sampled
     data using the Gauss-Legendre quadrature.
-    
+
     Parameters
     ----------
     y : numpy.ndarray
@@ -179,7 +179,7 @@ def elementwise_quad(y, x, n_points=3):
         integration domain
     n_points : int, optional
         degree of the Gauss-Legendre quadrature
-        
+
     Returns
     -------
     float
@@ -199,10 +199,10 @@ def elementwise_quad(y, x, n_points=3):
 def elementwise_dblquad(z, x, y, n_points=9):
     r"""Return the approximate value of the integral of a given sampled
     2-D data using the Gauss-Legendre quadrature.
-    
+
     Parameters
     ----------
-    z: numpy.ndarray
+    z : numpy.ndarray
         sampled integrand function of shape (x.size, y.size)
     y : numpy.ndarray
         y-axis strictly ascending coordinates
@@ -210,7 +210,7 @@ def elementwise_dblquad(z, x, y, n_points=9):
         x-axis strictly ascending coordinates
     n_points : int, optional
         degree of the Gauss-Legendre quadrature
-        
+
     Returns
     -------
     float
